@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
-  android:maxWidth="@dimen/size_260"
+  android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:padding="@dimen/interval_8"
-  android:layout_margin="@dimen/interval_16"
-  android:background="@drawable/mytalk_background"
-  android:layout_gravity="end"
+  android:layout_marginVertical="@dimen/interval_8"
+  android:layout_marginHorizontal="@dimen/interval_16"
+  android:gravity="end"
   >
 
   <TextView
     android:id="@+id/textView_myTalk"
     android:layout_width="wrap_content"
+    android:maxWidth="@dimen/size_260"
     android:layout_height="wrap_content"
     android:text="안녕하세요 저는 이동근입니다."
     android:textColor="@color/black0"
+    android:padding="@dimen/interval_8"
+    android:background="@drawable/mytalk_background"
     />
 </LinearLayout>

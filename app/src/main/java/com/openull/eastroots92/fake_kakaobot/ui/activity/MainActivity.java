@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     button_sned.setOnClickListener( (__) -> {
       String currentMessage = editText_input.getText().toString();
 
-      Toast.makeText(this, currentMessage, Toast.LENGTH_SHORT).show();
+      handleChatSubmit(currentMessage);
     });
   }
 
@@ -55,9 +55,17 @@ public class MainActivity extends AppCompatActivity {
     chattingAdapter = new ChattingAdapter(getApplicationContext(), chats);
     recyclerView_chatting.setAdapter(chattingAdapter);
   }
-  
+
+  private void handleChatSubmit(String currentMessage){
+    Chat chat = new Chat();
+    chat.setSpeech(currentMessage);
+
+    appendChat(chat);
+  }
+
   private void appendChat(Chat chat) {
     this.chats.add(chat);
+    this.chattingAdapter.notifyItemInserted(this.chats.size() -1);
   }
 
 
