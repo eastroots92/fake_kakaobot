@@ -10,15 +10,18 @@ import android.widget.Toast;
 
 import com.openull.eastroots92.fake_kakaobot.R;
 import com.openull.eastroots92.fake_kakaobot.model.Chat;
+import com.openull.eastroots92.fake_kakaobot.ui.adapter.ChattingAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
   private EditText editText_input;
   private Button button_sned;
-  private List<Chat> chat;
+  private List<Chat> chats;
   private RecyclerView recyclerView_chatting;
+  private ChattingAdapter chattingAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +48,16 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void initChattingRecyclerView() {
+    chats = new ArrayList<>();
     recyclerView_chatting = findViewById(R.id.recyclerView_chatting);
 
     recyclerView_chatting.setLayoutManager(new LinearLayoutManager(this));
+    chattingAdapter = new ChattingAdapter(getApplicationContext(), chats);
+    recyclerView_chatting.setAdapter(chattingAdapter);
   }
-
+  
   private void appendChat(Chat chat) {
-    this.chat.add(chat);
+    this.chats.add(chat);
   }
 
 
