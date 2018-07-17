@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <dimen name="size_30">30dp</dimen>
+  <dimen name="size_52">52dp</dimen>
+  <dimen name="size_56">56dp</dimen>
+  <dimen name="size_260">260dp</dimen>
+
+  <dimen name="interval_2">2dp</dimen>
+  <dimen name="interval_4">4dp</dimen>
+  <dimen name="interval_8">8dp</dimen>
+  <dimen name="interval_16">16dp</dimen>
+
 
 </resources>

@@ -5,6 +5,7 @@
   <color name="colorAccent">#aebfcf</color>
 
   <color name="backgroundBlue">#aebfcf</color>
+  <color name="backgroundBlueOp95">#aebfcff2</color>
   <color name="backgroundWhite1">#ffffff</color>
   <color name="backgroundWhite2">#f8f8f8</color>
   <color name="borderWhite">#dcdcde</color>
