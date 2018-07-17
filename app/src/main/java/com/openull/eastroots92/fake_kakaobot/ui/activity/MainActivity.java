@@ -1,5 +1,6 @@
 package com.openull.eastroots92.fake_kakaobot.ui.activity;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
       handleChatSubmit(currentMessage);
       clearInput();
+
+//      Fake 동작을 위해 추가
+      fakeBotTalk();
     });
   }
 
@@ -71,18 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
   private void appendChat(Chat chat) {
     this.chats.add(chat);
-//    Fake 대답을 위해 추가
-    this.chats.add(fakeBotTalk());
+
     this.chattingAdapter.notifyItemInserted(this.chats.size() -1);
   }
 
-  private Chat fakeBotTalk() {
-    Chat chat = new Chat();
-    chat.setSpeech("뭐라는 건지 1도 모르겠음");
-    chat.setViewType(2);
+  private void fakeBotTalk() {
+    new Handler().postDelayed(() -> {
+      Chat chat = new Chat();
+      chat.setSpeech("뭐라는 건지 1도 모르겠음");
+      chat.setViewType(2);
 
-    return chat;
+      appendChat(chat);
+    }, 500);
   }
-
-
 }
