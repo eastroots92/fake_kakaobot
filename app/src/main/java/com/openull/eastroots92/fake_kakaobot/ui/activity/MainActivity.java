@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
   private void handleChatSubmit(String currentMessage){
     Chat chat = new Chat();
     chat.setSpeech(currentMessage);
+    chat.setViewType(1);
 
     appendChat(chat);
   }
@@ -70,7 +71,17 @@ public class MainActivity extends AppCompatActivity {
 
   private void appendChat(Chat chat) {
     this.chats.add(chat);
+//    Fake 대답을 위해 추가
+    this.chats.add(fakeBotTalk());
     this.chattingAdapter.notifyItemInserted(this.chats.size() -1);
+  }
+
+  private Chat fakeBotTalk() {
+    Chat chat = new Chat();
+    chat.setSpeech("뭐라는 건지 1도 모르겠음");
+    chat.setViewType(2);
+
+    return chat;
   }
 
 
