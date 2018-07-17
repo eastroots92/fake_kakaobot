@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
       String currentMessage = editText_input.getText().toString();
 
       handleChatSubmit(currentMessage);
+      clearInput();
     });
   }
 
@@ -61,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
     chat.setSpeech(currentMessage);
 
     appendChat(chat);
+  }
+
+  private void clearInput() {
+    editText_input.setText("");
   }
 
   private void appendChat(Chat chat) {
