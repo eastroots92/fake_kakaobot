@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     this.chats.add(chat);
 
     this.chattingAdapter.notifyItemInserted(this.chats.size() -1);
+    recyclerView_chatting.scrollToPosition(this.chats.size() -1);
   }
 
   private void fakeBotTalk() {
