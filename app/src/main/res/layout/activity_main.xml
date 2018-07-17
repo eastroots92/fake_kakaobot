@@ -36,6 +36,7 @@
         android:background="@drawable/input_background"
         android:padding="@dimen/interval_4"
         android:gravity="center_vertical"
+        android:layout_weight="1"
         >
 
         <EditText
