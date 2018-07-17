@@ -13,7 +13,9 @@ import com.openull.eastroots92.fake_kakaobot.model.Chat;
 
 import java.util.List;
 
-public class ChattingAdapter extends RecyclerView.Adapter<ChattingAdapter.ChattingHolder> {
+public class ChattingAdapter extends RecyclerView.Adapter{
+  private static final int VIEW_TYPE_MESSAGE_MY = 1;
+  private static final int VIEW_TYPE_MESSAGE_BOT = 2;
 
   private Context context;
   private List<Chat> chatData;
@@ -25,18 +27,34 @@ public class ChattingAdapter extends RecyclerView.Adapter<ChattingAdapter.Chatti
 
   @NonNull
   @Override
-  public ChattingHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext())
-      .inflate(R.layout.item_my_talk, parent, false);
+  public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View view;
 
-    return new ChattingHolder(view);
+    if (viewType == VIEW_TYPE_MESSAGE_MY) {
+      view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.item_my_talk, parent, false);
+      return new MyChatHolder(view);
+    } else if (viewType == VIEW_TYPE_MESSAGE_BOT) {
+      view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.item_bot_talk, parent, false);
+      return new BotChatHolder(view);
+    }
+
+    return null;
   }
 
   @Override
-  public void onBindViewHolder(@NonNull ChattingHolder chattingHolder, int position) {
-    Chat chat = this.chatData.get(position);
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    Chat chat = chatData.get(position);
 
-    chattingHolder.textView_myTalk.setText(chat.getSpeech());
+    switch (viewHolder.getItemViewType()) {
+      case VIEW_TYPE_MESSAGE_MY:
+        ((MyChatHolder) viewHolder).bind(chat);
+        break;
+      case VIEW_TYPE_MESSAGE_BOT:
+        ((BotChatHolder) viewHolder).bind(chat);
+    }
+
   }
 
   @Override
@@ -44,13 +62,42 @@ public class ChattingAdapter extends RecyclerView.Adapter<ChattingAdapter.Chatti
     return chatData.size();
   }
 
-  public class ChattingHolder extends RecyclerView.ViewHolder {
+  @Override
+  public int getItemViewType(int position) {
+    Chat chat = chatData.get(position);
+
+    if (chat.getViewType() == 1) {
+      return VIEW_TYPE_MESSAGE_MY;
+    } else {
+      return VIEW_TYPE_MESSAGE_BOT;
+    }
+  }
+
+  private class MyChatHolder extends RecyclerView.ViewHolder {
     TextView textView_myTalk;
 
-    public ChattingHolder(@NonNull View itemView) {
+    MyChatHolder(@NonNull View itemView) {
       super(itemView);
 
       textView_myTalk = itemView.findViewById(R.id.textView_myTalk);
+    }
+
+    public void bind(Chat chat) {
+      textView_myTalk.setText(chat.getSpeech());
+    }
+  }
+
+  private class BotChatHolder extends RecyclerView.ViewHolder {
+    TextView textView_botTalk;
+
+    BotChatHolder(@NonNull View itemView) {
+      super(itemView);
+
+      textView_botTalk = itemView.findViewById(R.id.textView_botTalk);
+    }
+
+    public void bind(Chat chat) {
+      textView_botTalk.setText(chat.getSpeech());
     }
   }
 }
