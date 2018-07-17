@@ -7,11 +7,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.openull.eastroots92.fake_kakaobot.R;
+import com.openull.eastroots92.fake_kakaobot.model.Chat;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
   private EditText editText_input;
   private Button button_sned;
+  private List<Chat> chat;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,4 +39,10 @@ public class MainActivity extends AppCompatActivity {
       Toast.makeText(this, currentMessage, Toast.LENGTH_SHORT).show();
     });
   }
+
+  private void appendChat(Chat chat) {
+    this.chat.add(chat);
+  }
+
+
 }
