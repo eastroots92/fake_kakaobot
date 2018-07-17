@@ -1,4 +1,4 @@
-package com.openull.eastroots92.fake_kakaobot.ui;
+package com.openull.eastroots92.fake_kakaobot.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
